@@ -11,19 +11,19 @@ C:\Program Files\Unity\Hub\2020.3.19f1\Editor\Unity.exe
 -name
 AssetImportWorker0
 -projectPath
-E:/Unity/Новая папка (7)
+E:/Unity/MyFirst3DGame
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-50867
-Successfully changed project path to: E:/Unity/Новая папка (7)
-E:/Unity/Новая папка (7)
+59895
+Successfully changed project path to: E:/Unity/MyFirst3DGame
+E:/Unity/MyFirst3DGame
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 119.59 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 120.57 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.19f1 (68f137dc9bbe)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/2020.3.19f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path E:/Unity/Новая папка (7)/Assets
+[Subsystems] Discovering subsystems at path E:/Unity/MyFirst3DGame/Assets
 GfxDevice: creating device client; threaded=0
 Direct3D:
     Version:  Direct3D 11.0 [level 11.0]
@@ -35,5 +35,5 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/2020.3.19f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/2020.3.19f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files/Unity/Hub/2020.3.19f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56780
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56128
 Begin MonoManager ReloadAssembly

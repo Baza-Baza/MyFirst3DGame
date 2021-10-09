@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{36A6494B-B429-7B1D-7098-C60E534E5F17}</ProjectGuid>
+    <ProjectGuid>{651C11CA-B286-614E-3611-C65B1FA88522}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -56,15 +56,18 @@
     <Compile Include="Assets\SampleScenes\Scripts\ParticleSceneControls.cs" />
     <Compile Include="Assets\Nokobot\Modern Guns - Handgun\_Demo Assets\SimpleShoot.cs" />
     <Compile Include="Assets\MY Scripts\FirstPersonController.cs" />
+    <Compile Include="Assets\MY Scripts\DestroyBullitORBow.cs" />
     <Compile Include="Assets\MY Scripts\PickUPS.cs" />
     <Compile Include="Assets\SampleScenes\Scripts\SlowMoButton.cs" />
     <Compile Include="Assets\MY Scripts\HealthScript.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\SceneAndURLLoader.cs" />
     <Compile Include="Assets\SampleScenes\Scripts\LevelReset.cs" />
     <Compile Include="Assets\MY Scripts\Inventory.cs" />
+    <Compile Include="Assets\MY Scripts\BowUI.cs" />
     <Compile Include="Assets\MY Scripts\EnemyAttack.cs" />
     <Compile Include="Assets\MY Scripts\SaveScript.cs" />
     <Compile Include="Assets\MY Scripts\PLayerAttack.cs" />
+    <Compile Include="Assets\MY Scripts\GunShot.cs" />
     <Compile Include="Assets\MY Scripts\LHRotate.cs" />
     <Compile Include="Assets\Flooded_Grounds\Scripts\WaterFloat.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\PauseMenu.cs" />
@@ -78,20 +81,21 @@
     <Compile Include="Assets\SampleScenes\Scripts\PlaceTargetWithMouse.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\MenuSceneLoader.cs" />
     <Compile Include="Assets\MY Scripts\EnemyDamage.cs" />
+    <Compile Include="Assets\MY Scripts\BulletUI.cs" />
     <Compile Include="Assets\MY Scripts\EnemyMove.cs" />
     <Compile Include="Assets\Flooded_Grounds\Scripts\DisableRenderer.cs" />
     <Compile Include="Assets\MY Scripts\LightSettingsPlayer.cs" />
     <Compile Include="Assets\MY Scripts\CharController_Motor2.cs" />
     <Compile Include="Assets\Nokobot\Sci-Fi_Crossbow\Demo\Scripts\CrossbowShoot.cs" />
     <Compile Include="Assets\Flooded_Grounds\Scripts\FPSDisplay.cs" />
-    <Compile Include="Assets\MY Scripts\GunShot.cs" />
-    <Compile Include="Assets\MY Scripts\BulletUI.cs" />
-    <Compile Include="Assets\MY Scripts\DestroyBullitORBow.cs" />
-    <Compile Include="Assets\MY Scripts\BowUI.cs" />
+    <Compile Include="Assets\EasyLoadingScreen\Scripts\RotateBar.cs" />
+    <Compile Include="Assets\EasyLoadingScreen\Scripts\LoadingScreenBarSystem.cs" />
+    <Compile Include="Assets\MY Scripts\MainMEnuLOad.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Flooded_Grounds\Resources\TreeCreator\TreeCreatorBark.shader" />
     <None Include="Assets\SampleScenes\Shaders\Skybox-Procedural.shader" />
+    <None Include="Assets\EasyLoadingScreen\Setup.txt" />
     <None Include="Assets\Flooded_Grounds\Resources\TreeCreator\TreeCreatorLeavesOptimized.shader" />
     <None Include="Assets\Nokobot\Modern Guns - Handgun\README.txt" />
     <None Include="Assets\Flooded_Grounds\Content\Shaders\FG_PBR_TopBlend.shader" />
@@ -710,7 +714,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{16B0C4A7-C5EC-8827-BFFF-45AB884650AA}</Project>
+      <Project>{FDB7CE8B-3F5C-888B-C335-24B5723C9DD8}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
     </ProjectReference>
   </ItemGroup>
