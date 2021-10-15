@@ -67,8 +67,10 @@
     <Compile Include="Assets\MY Scripts\EnemyAttack.cs" />
     <Compile Include="Assets\MY Scripts\SaveScript.cs" />
     <Compile Include="Assets\MY Scripts\PLayerAttack.cs" />
+    <Compile Include="Assets\EasyLoadingScreen\Scripts\LoadingScreenBarSystem.cs" />
     <Compile Include="Assets\MY Scripts\GunShot.cs" />
     <Compile Include="Assets\MY Scripts\LHRotate.cs" />
+    <Compile Include="Assets\EasyLoadingScreen\Scripts\RotateBar.cs" />
     <Compile Include="Assets\Flooded_Grounds\Scripts\WaterFloat.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\Flooded_Grounds\Scripts\FPSController\CharController_Motor.cs" />
@@ -80,6 +82,7 @@
     <Compile Include="Assets\MY Scripts\BattaryPower.cs" />
     <Compile Include="Assets\SampleScenes\Scripts\PlaceTargetWithMouse.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\MenuSceneLoader.cs" />
+    <Compile Include="Assets\MY Scripts\MainMEnuLOad.cs" />
     <Compile Include="Assets\MY Scripts\EnemyDamage.cs" />
     <Compile Include="Assets\MY Scripts\BulletUI.cs" />
     <Compile Include="Assets\MY Scripts\EnemyMove.cs" />
@@ -88,9 +91,7 @@
     <Compile Include="Assets\MY Scripts\CharController_Motor2.cs" />
     <Compile Include="Assets\Nokobot\Sci-Fi_Crossbow\Demo\Scripts\CrossbowShoot.cs" />
     <Compile Include="Assets\Flooded_Grounds\Scripts\FPSDisplay.cs" />
-    <Compile Include="Assets\EasyLoadingScreen\Scripts\RotateBar.cs" />
-    <Compile Include="Assets\EasyLoadingScreen\Scripts\LoadingScreenBarSystem.cs" />
-    <Compile Include="Assets\MY Scripts\MainMEnuLOad.cs" />
+    <Compile Include="Assets\MY Scripts\OptionsMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Flooded_Grounds\Resources\TreeCreator\TreeCreatorBark.shader" />
