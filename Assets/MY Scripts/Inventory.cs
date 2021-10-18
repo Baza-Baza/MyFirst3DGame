@@ -31,6 +31,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] GameObject bulletAmt;
     [SerializeField] GameObject crossbowUI;
     [SerializeField] GameObject bowAmt;
+    [SerializeField] GameObject optionsMenu;
 
 
 
@@ -39,6 +40,7 @@ public class Inventory : MonoBehaviour
     private AudioSource player;
     public UnityEvent bulletEvent;
     public UnityEvent bowEvent;
+    private bool activeOptions =false;
 
     // Start is called before the first frame update
     private void Start()
@@ -49,6 +51,8 @@ public class Inventory : MonoBehaviour
         player = GetComponent<AudioSource>();
         inventoryPanel.gameObject.SetActive(false);
         Cursor.visible = false;
+        Time.timeScale = 1;
+        optionsMenu.SetActive(false);
         for (int i = 0; i < ApplesButtons.Count; i++)
         {
             ApplesButtons[i].SetActive(false);
@@ -108,6 +112,21 @@ public class Inventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            if (activeOptions == false)
+            {
+                optionsMenu.SetActive(true);
+                activeOptions = true;
+            }
+            else  if (activeOptions == true)
+            {
+                optionsMenu.SetActive(false);
+                activeOptions = false;
+                Cursor.visible = false;
+                Time.timeScale = 1;
+            }
+        }
         if (Input.GetKeyDown(KeyCode.I))
          {
             if (isInventory == false)

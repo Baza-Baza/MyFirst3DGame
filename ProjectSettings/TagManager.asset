@@ -42,6 +42,7 @@ TagManager:
   - Bul2
   - Bul3
   - Bul4
+  - Visuals
   layers:
   - Default
   - TransparentFX
