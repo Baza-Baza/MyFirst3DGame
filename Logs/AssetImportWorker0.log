@@ -15,11 +15,11 @@ E:/Unity/MyFirst3DGame
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-50149
+49920
 Successfully changed project path to: E:/Unity/MyFirst3DGame
 E:/Unity/MyFirst3DGame
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 390.14 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 233.50 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.19f1 (68f137dc9bbe)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/2020.3.19f1/Editor/Data/Resources/UnitySubsystems
@@ -35,5 +35,5 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/2020.3.19f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/2020.3.19f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files/Unity/Hub/2020.3.19f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56192
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56144
 Begin MonoManager ReloadAssembly
