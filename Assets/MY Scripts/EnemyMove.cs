@@ -27,7 +27,8 @@ public class EnemyMove : MonoBehaviour
     {
         navMesh = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
-        theTarget = targets[targetNumber - 1]; 
+        theTarget = targets[targetNumber - 1];
+        navMesh.avoidancePriority = Random.Range(5, 65);
     }
 
     // Update is called once per frame

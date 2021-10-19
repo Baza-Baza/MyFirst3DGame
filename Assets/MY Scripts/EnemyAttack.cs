@@ -2,7 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
+
+public enum AnimEnemyAttack
+{ 
+    knife,
+    bat, 
+    axe
+};
 public class EnemyAttack : MonoBehaviour
 {
     private NavMeshAgent nav;
@@ -13,6 +21,7 @@ public class EnemyAttack : MonoBehaviour
     private bool isCheking = true;
     private int failCheckes = 0;
     private GameObject damageZone;
+    private UnityEvent<bool> checkRunToPLayerEvent;
 
     [SerializeField] Transform player;
     [SerializeField] Animator anim;
@@ -26,13 +35,16 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] float checkTime = 3.0f;
     [SerializeField] GameObject chaseMusic;
     [SerializeField] GameObject bloodUI;
+    public AnimEnemyAttack animEnemyAttack;
     // Start is called before the first frame update
     void Start()
     {
         nav = GetComponentInParent<NavMeshAgent>();
         chaseMusic.SetActive(false);
         damageZone = GameObject.FindGameObjectWithTag("DamageZone");
-
+        if (checkRunToPLayerEvent == null)
+            checkRunToPLayerEvent = new UnityEvent<bool>();
+        checkRunToPLayerEvent.AddListener(CheckRunToPLayer);
     }
 
     // Update is called once per frame
@@ -63,11 +75,16 @@ public class EnemyAttack : MonoBehaviour
                     anim.SetInteger("State", 1);
                     failCheckes++;
                 }
-
+                
                 StartCoroutine(CheckedTime());
             }
+            checkRunToPLayerEvent.Invoke(runToPLayer);
         }
-        if (runToPLayer == true)
+       
+    }
+    private void CheckRunToPLayer(bool Check)
+    {
+        if (Check == true)
         {
             enemy.GetComponent<EnemyMove>().enabled = false;
             if (damageZone.GetComponent<EnemyDamage>().hasDied == false)
@@ -87,7 +104,18 @@ public class EnemyAttack : MonoBehaviour
             {
                 nav.isStopped = true;
                 Debug.Log("I'm attacking");
-               anim.SetInteger("State", 3);
+                if (animEnemyAttack == AnimEnemyAttack.axe)
+                {
+                    anim.SetInteger("State", 3);
+                }
+                else if(animEnemyAttack == AnimEnemyAttack.bat)
+                {
+                    anim.SetInteger("State", 4);
+                }
+                else if (animEnemyAttack == AnimEnemyAttack.knife)
+                {
+                    anim.SetInteger("State", 5);
+                }
                 nav.acceleration = 180;
                 bloodUI.SetActive(true);
 
@@ -95,14 +123,13 @@ public class EnemyAttack : MonoBehaviour
                 Quaternion posRot = Quaternion.LookRotation(new Vector3(pos.x, 0, pos.z));
                 enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, posRot, Time.deltaTime * attackRotateSpeed);
             }
-
         }
-        else if (runToPLayer == false)
+        else if (Check == false)
         {
             nav.isStopped = true;
         }
-       
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))

@@ -357,6 +357,7 @@ MonoBehaviour:
   checkTime: 10
   chaseMusic: {fileID: 0}
   bloodUI: {fileID: 0}
+  animEnemyAttack: 0
 --- !u!1 &1645448333705053381
 GameObject:
   m_ObjectHideFlags: 0
@@ -833,7 +834,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1879310954384147695}
-  m_LocalRotation: {x: -0, y: 0.008646514, z: -0, w: 0.9999626}
+  m_LocalRotation: {x: 0, y: 0.008648009, z: 0, w: 0.9999626}
   m_LocalPosition: {x: 541.8922, y: 16.760778, z: 435.27573}
   m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_Children:
