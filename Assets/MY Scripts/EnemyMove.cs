@@ -13,6 +13,7 @@ public class EnemyMove : MonoBehaviour
     private bool isStopped;
     private bool randomizer = true;
     private int nextTargetNumber;
+    private bool go = false;
 
 
     [SerializeField] int maxTargetNumber;
@@ -27,29 +28,32 @@ public class EnemyMove : MonoBehaviour
     {
         navMesh = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
-        theTarget = targets[targetNumber - 1];
-        navMesh.avoidancePriority = Random.Range(5, 65);
+        StartCoroutine(StartElement());
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        distanceToTarget = Vector3.Distance(theTarget.position, transform.position);
-        if (distanceToTarget > stopDistance)
+        if (go == true)
         {
-            navMesh.isStopped = false;
-            anim.SetInteger("State", 0);
-            navMesh.SetDestination(theTarget.position);
-            nextTargetNumber = targetNumber;
-            navMesh.speed = 1.6f;
+            distanceToTarget = Vector3.Distance(theTarget.position, transform.position);
+            if (distanceToTarget > stopDistance)
+            {
+                navMesh.isStopped = false;
+                anim.SetInteger("State", 0);
+                navMesh.SetDestination(theTarget.position);
+                nextTargetNumber = targetNumber;
+                navMesh.speed = 1.6f;
+            }
+            if (distanceToTarget < stopDistance)
+            {
+                navMesh.isStopped = true;
+                anim.SetInteger("State", 1);
+                StartCoroutine(LookAround());
+
+            }
         }
-        if (distanceToTarget < stopDistance)
-        {
-            navMesh.isStopped = true;
-            anim.SetInteger("State", 1);
-            StartCoroutine(LookAround());
-           
-    }
     IEnumerator LookAround()
     {
         yield return new WaitForSeconds(waitTime);
@@ -78,5 +82,16 @@ public class EnemyMove : MonoBehaviour
                 randomizer = true;
             }            
         }
+    }
+    IEnumerator StartElement()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        targets = new List<Transform>(SaveScript.targets);
+
+        theTarget = targets[0];
+        navMesh.avoidancePriority = Random.Range(5, 65);
+        go = true;
+
     }
 }

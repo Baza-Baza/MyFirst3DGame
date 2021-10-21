@@ -10,6 +10,7 @@ public class EnemyDamage : MonoBehaviour
     private AudioSource audioEnemyDetect;
     [SerializeField] AudioSource stabAudio;
     public  bool hasDied;
+    private bool damageOn =false;
     private Animator anim;
     [SerializeField] GameObject knifeBloodSpray;
     [SerializeField] GameObject batBloodSpray;
@@ -19,9 +20,7 @@ public class EnemyDamage : MonoBehaviour
     {
         audioEnemyDetect = GetComponent<AudioSource>();
         anim = GetComponentInParent<Animator>();
-        knifeBloodSpray.SetActive(false);
-        batBloodSpray.SetActive(false);
-        axeBloodSpray.SetActive(false);
+        StartCoroutine(StartElements());
 
     }
 
@@ -60,10 +59,12 @@ public class EnemyDamage : MonoBehaviour
         enemyHealth -= damageToEnemy;
         audioEnemyDetect.Play();
         stabAudio.Play();
-
-        if (enemyHealth <= 0)
+        if (damageOn == true)
         {
-            Died();
+            if (enemyHealth <= 0)
+            {
+                Died();
+            }
         }
     }
     public void Died()
@@ -73,8 +74,21 @@ public class EnemyDamage : MonoBehaviour
                 anim.SetTrigger("Death");
                 anim.SetBool("IsDied", true);
                 hasDied = true;
-                Destroy(GameObject.FindGameObjectWithTag("Enemy"), 5f);
+                Destroy(this.transform.parent.gameObject, 25f);
             }
         }
+    IEnumerator StartElements()
+    {
+        yield return new WaitForSeconds(0.1f);
+        stabAudio = SaveScript.stabPlayer;
+        knifeBloodSpray = SaveScript.knifeBloodSpray;
+        batBloodSpray = SaveScript.batBloodSpray;
+        axeBloodSpray = SaveScript.axeBloodSpray;
+        knifeBloodSpray.SetActive(false);
+        batBloodSpray.SetActive(false);
+        axeBloodSpray.SetActive(false);
+        damageOn = true;
+        
+    }
 }
 

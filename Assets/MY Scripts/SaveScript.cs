@@ -34,9 +34,38 @@ public class SaveScript : MonoBehaviour
     public static int bullets = 12;
     public static int bow = 6;
     public static bool newGame = false;
+    public static List<Transform> targets;
+    public static Transform playerChar;
+    public static GameObject chase;
+    public static GameObject bloodScreen;
+    public static Transform player;
+    public static AudioSource stabPlayer;
+    public static GameObject knifeBloodSpray;
+    public static GameObject batBloodSpray;
+    public static GameObject axeBloodSpray;
+    public static Animator bloodAnim;
 
+
+    [SerializeField] List<Transform> _targets;
+    [SerializeField] GameObject chaseMusic;
+    [SerializeField] GameObject bloodUI;
+    [SerializeField] AudioSource _stabPlayer;
+    [SerializeField] GameObject _knifeBloodSpray;
+    [SerializeField] GameObject _batBloodSpray;
+    [SerializeField] GameObject _axeBloodSpray;
+    [SerializeField] Animator _bloodAnim;
     private void Start()
     {
+        player = gameObject.GetComponent<Transform>();
+        bloodScreen = bloodUI;
+        chase = chaseMusic;
+        targets = new List<Transform>(_targets);
+        stabPlayer = _stabPlayer;
+        knifeBloodSpray = _knifeBloodSpray;
+        batBloodSpray = _batBloodSpray;
+        axeBloodSpray = _axeBloodSpray;
+        bloodAnim = _bloodAnim;
+
         if (newGame == true)
         {
                      playerHealth = 85;

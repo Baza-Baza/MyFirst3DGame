@@ -9,22 +9,27 @@ public class EnemyWeaponDAmage : MonoBehaviour
     [SerializeField] AudioSource myPlayer;
     private bool hitActive;
     private GameObject fpsArms;
+    private bool canAttack = false;
     private void Start ()
     {
         fpsArms = GameObject.FindWithTag("Arms");
+        StartCoroutine(StartElements());
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (hitActive == false)
+            if (canAttack == true)
             {
-                hitActive = true;
-                bloodAnim.SetTrigger("Blood");
-                SaveScript.playerHealth -= weaponDamage;
-                SaveScript.healthChanged = true;
-                myPlayer.Play();
-                fpsArms.GetComponent<PLayerAttack>().attackStamina -= 2.0f;
+                if (hitActive == false)
+                {
+                    hitActive = true;
+                    bloodAnim.SetTrigger("Blood");
+                    SaveScript.playerHealth -= weaponDamage;
+                    SaveScript.healthChanged = true;
+                    myPlayer.Play();
+                    fpsArms.GetComponent<PLayerAttack>().attackStamina -= 2.0f;
+                }
             }
         }
     }
@@ -37,5 +42,13 @@ public class EnemyWeaponDAmage : MonoBehaviour
                 hitActive = false;
             }
         }
+    }
+    IEnumerator StartElements()
+    {
+        yield return new WaitForSeconds(0.1f);
+        bloodAnim = SaveScript.bloodAnim;
+        myPlayer = SaveScript.stabPlayer;
+        canAttack = true;
+
     }
 }

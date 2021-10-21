@@ -865,7 +865,6 @@ GameObject:
   - component: {fileID: 3215971806994283062}
   - component: {fileID: 3206613700154365068}
   - component: {fileID: 3230238665433519355}
-  - component: {fileID: 3230238665433519352}
   m_Layer: 7
   m_Name: Knife Enemy
   m_TagString: Untagged
@@ -953,20 +952,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &3230238665433519352
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3229102890558052626}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.39
-  m_Height: 1.93
-  m_Direction: 1
-  m_Center: {x: -0.0000003091991, y: 0.021474779, z: -0.000000022351742}
 --- !u!1 &3374288719227445000
 GameObject:
   m_ObjectHideFlags: 0
@@ -2953,10 +2938,10 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0.83137256, g: 0.5529412, b: 0.44313726, a: 1}
-  m_Intensity: 2.4
-  m_Range: 6
-  m_SpotAngle: 75
+  m_Color: {r: 0.74509805, g: 0.6745098, b: 0.50980395, a: 1}
+  m_Intensity: 2.1
+  m_Range: 8
+  m_SpotAngle: 76
   m_InnerSpotAngle: 1
   m_CookieSize: 10
   m_Shadows:
@@ -3163,7 +3148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99d2fd0582580e24cb1c21fbdcfa208b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   anim: {fileID: 8266223112793205908}
   enemy: {fileID: 9112734564411019727}
   maxRange: 35
@@ -3194,7 +3178,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8266223112593403305
 Transform:
   m_ObjectHideFlags: 0
@@ -3605,7 +3589,7 @@ NavMeshAgent:
   m_Radius: 0.5
   m_Speed: 1.6
   m_Acceleration: 24
-  avoidancePriority: 50
+  avoidancePriority: 70
   m_AngularSpeed: 480000
   m_StoppingDistance: 0.5
   m_AutoTraverseOffMeshLink: 1

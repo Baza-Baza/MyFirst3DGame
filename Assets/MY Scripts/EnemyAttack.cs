@@ -22,8 +22,8 @@ public class EnemyAttack : MonoBehaviour
     private int failCheckes = 0;
     private GameObject damageZone;
     private UnityEvent<bool> checkRunToPLayerEvent;
+    private Transform player;
 
-    [SerializeField] Transform player;
     [SerializeField] Animator anim;
     [SerializeField] GameObject enemy;
     [SerializeField] float maxRange = 35.0f;
@@ -36,49 +36,55 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] GameObject chaseMusic;
     [SerializeField] GameObject bloodUI;
     public AnimEnemyAttack animEnemyAttack;
+    private bool canRun = false;
     // Start is called before the first frame update
     void Start()
     {
         nav = GetComponentInParent<NavMeshAgent>();
-        chaseMusic.SetActive(false);
+        damageZone = GameObject.FindGameObjectWithTag("DamageZone");       
+        StartCoroutine(StartElements());
         damageZone = GameObject.FindGameObjectWithTag("DamageZone");
         if (checkRunToPLayerEvent == null)
             checkRunToPLayerEvent = new UnityEvent<bool>();
         checkRunToPLayerEvent.AddListener(CheckRunToPLayer);
+        player = GameObject.FindWithTag("Player").GetComponent<Transform>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (damageZone.GetComponent<EnemyDamage>().hasDied == true)
+        if (canRun == true)
         {
-            chaseMusic.SetActive(false);
-        }
-        distanceToPlayer = Vector3.Distance(player.position, enemy.transform.position);
-        if (distanceToPlayer < maxRange)
-        {
-            if (isCheking == true)
+            if (damageZone.GetComponent<EnemyDamage>().hasDied == true)
             {
-                isCheking = false;
-                blocked = NavMesh.Raycast(transform.position, player.position, out hit, NavMesh.AllAreas);
-
-                if (blocked == false)
-                {
-                    Debug.Log("I can see thr Player");
-                    runToPLayer = true;
-                    failCheckes = 0;
-                }
-                if (blocked == true)
-                {
-                    Debug.Log("I can't seen the Player");
-                    runToPLayer = false;
-                    anim.SetInteger("State", 1);
-                    failCheckes++;
-                }
-                
-                StartCoroutine(CheckedTime());
+                chaseMusic.SetActive(false);
             }
-            checkRunToPLayerEvent.Invoke(runToPLayer);
+            distanceToPlayer = Vector3.Distance(player.position, enemy.transform.position);
+            if (distanceToPlayer < maxRange)
+            {
+                if (isCheking == true)
+                {
+                    isCheking = false;
+                    blocked = NavMesh.Raycast(transform.position, player.position, out hit, NavMesh.AllAreas);
+
+                    if (blocked == false)
+                    {
+                        Debug.Log("I can see thr Player");
+                        runToPLayer = true;
+                        failCheckes = 0;
+                    }
+                    if (blocked == true)
+                    {
+                        Debug.Log("I can't seen the Player");
+                        runToPLayer = false;
+                        anim.SetInteger("State", 1);
+                        failCheckes++;
+                    }
+
+                    StartCoroutine(CheckedTime());
+                }
+                checkRunToPLayerEvent.Invoke(runToPLayer);
+            }
         }
        
     }
@@ -166,6 +172,16 @@ public class EnemyAttack : MonoBehaviour
             failCheckes = 0;
             chaseMusic.SetActive(false);
         }
+    }
+    IEnumerator StartElements()
+    {
+        yield return new WaitForSeconds(0.1f);
+        player = SaveScript.player;
+        bloodUI = SaveScript.bloodScreen;
+        chaseMusic = SaveScript.chase;
+        chaseMusic.SetActive(false);
+        canRun = true;
+
     }
 }
 

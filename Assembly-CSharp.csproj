@@ -87,11 +87,12 @@
     <Compile Include="Assets\MY Scripts\BulletUI.cs" />
     <Compile Include="Assets\MY Scripts\EnemyMove.cs" />
     <Compile Include="Assets\Flooded_Grounds\Scripts\DisableRenderer.cs" />
+    <Compile Include="Assets\MY Scripts\OptionsMenu.cs" />
     <Compile Include="Assets\MY Scripts\LightSettingsPlayer.cs" />
     <Compile Include="Assets\MY Scripts\CharController_Motor2.cs" />
     <Compile Include="Assets\Nokobot\Sci-Fi_Crossbow\Demo\Scripts\CrossbowShoot.cs" />
     <Compile Include="Assets\Flooded_Grounds\Scripts\FPSDisplay.cs" />
-    <Compile Include="Assets\MY Scripts\OptionsMenu.cs" />
+    <Compile Include="Assets\MY Scripts\Spawner.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Flooded_Grounds\Resources\TreeCreator\TreeCreatorBark.shader" />
