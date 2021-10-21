@@ -7,7 +7,6 @@ public class PLayerAttack : MonoBehaviour
 {
     public UnityEvent ShotEventBullet;
     public UnityEvent ShotEventBow;
-    public float attackStamina = 10;
     [SerializeField] float maxStamina = 10;
     [SerializeField] float attackDrain = 2;
     [SerializeField] float attackRefill = 1;
@@ -21,7 +20,7 @@ public class PLayerAttack : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        attackStamina = maxStamina;
+        SaveScript.attackStamina = maxStamina;
         crosshair = GameObject.FindGameObjectWithTag("Crosshair");
         pointer = GameObject.FindGameObjectWithTag("Pointer");
         crosshair.SetActive(false);
@@ -32,19 +31,18 @@ public class PLayerAttack : MonoBehaviour
     void Update()
     {
         CheckAnimtionWeapons();
-        Debug.Log(attackStamina);
     }
     private void CheckAnimtionWeapons()
     {
-        if (attackStamina < maxStamina)
+        if (SaveScript.attackStamina < maxStamina)
         {
-            attackStamina += attackRefill * Time.deltaTime; 
+            SaveScript.attackStamina += attackRefill * Time.deltaTime; 
         }
-        if (attackStamina < 0.1)
+        if (SaveScript.attackStamina < 0.1)
         {
-            attackStamina = 0.1f;
+            SaveScript.attackStamina = 0.1f;
         }
-        if (attackStamina > 3)
+        if (SaveScript.attackStamina > 3)
         {
             if (SaveScript.haveKnife == true)
             {
@@ -71,7 +69,7 @@ public class PLayerAttack : MonoBehaviour
     }
     private void AttackStamina()
     {
-        attackStamina -= attackDrain;
+        SaveScript.attackStamina -= attackDrain;
     }
     private void PlayerDamageMeleeWeapon(string leftTrigger, string rightTrigger)
     {

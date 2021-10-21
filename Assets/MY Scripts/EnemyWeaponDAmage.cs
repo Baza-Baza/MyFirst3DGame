@@ -12,7 +12,6 @@ public class EnemyWeaponDAmage : MonoBehaviour
     private bool canAttack = false;
     private void Start ()
     {
-        fpsArms = GameObject.FindWithTag("Arms");
         StartCoroutine(StartElements());
     }
     private void OnTriggerEnter(Collider other)
@@ -28,7 +27,7 @@ public class EnemyWeaponDAmage : MonoBehaviour
                     SaveScript.playerHealth -= weaponDamage;
                     SaveScript.healthChanged = true;
                     myPlayer.Play();
-                    fpsArms.GetComponent<PLayerAttack>().attackStamina -= 2.0f;
+                    SaveScript.attackStamina -= 2.0f;
                 }
             }
         }

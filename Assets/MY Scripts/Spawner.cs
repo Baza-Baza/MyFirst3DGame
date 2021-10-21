@@ -7,20 +7,33 @@ public class Spawner : MonoBehaviour
     [SerializeField] List<GameObject> enemySpawns;
     [SerializeField] List<Transform> spawnPoints;
     private bool canSpawn = true;
+    [SerializeField] bool retriggerable;
 
 
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            if (canSpawn == true)
+            if (other.CompareTag("Player"))
+             {
+            if (SaveScript.currentEnemiesInGame < SaveScript.maxEnemiesInGame)
             {
-                canSpawn = false;
-                Instantiate(enemySpawns[0], spawnPoints[0].position, spawnPoints[0].rotation);
-                Instantiate(enemySpawns[1], spawnPoints[1].position, spawnPoints[1].rotation);
-                Instantiate(enemySpawns[2], spawnPoints[2].position, spawnPoints[2].rotation);
-                StartCoroutine(WaitToSpawn());
+                if (SaveScript.enemiesOnScreen < SaveScript.maxEnemiesOnScreen)
+                {
+
+                    if (canSpawn == true)
+                    {
+
+
+                        canSpawn = false;
+                        InstantiateEnemies(0);
+                        InstantiateEnemies(1);
+                        InstantiateEnemies(2);
+                        if (retriggerable == true)
+                        {
+                            StartCoroutine(WaitToSpawn());
+                        }
+                    }
+                }
             }
         }
     }
@@ -28,5 +41,11 @@ public class Spawner : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         canSpawn = true;
+    }
+    private void InstantiateEnemies(int enemiesPositionNumber)
+    {
+        Instantiate(enemySpawns[enemiesPositionNumber], spawnPoints[enemiesPositionNumber].position, spawnPoints[enemiesPositionNumber].rotation);
+        SaveScript.enemiesOnScreen++;
+        SaveScript.currentEnemiesInGame++;
     }
 }

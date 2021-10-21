@@ -73,6 +73,7 @@
     <Compile Include="Assets\EasyLoadingScreen\Scripts\RotateBar.cs" />
     <Compile Include="Assets\Flooded_Grounds\Scripts\WaterFloat.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\PauseMenu.cs" />
+    <Compile Include="Assets\MY Scripts\Spawner.cs" />
     <Compile Include="Assets\Flooded_Grounds\Scripts\FPSController\CharController_Motor.cs" />
     <Compile Include="Assets\MY Scripts\EnemyWeaponDAmage.cs" />
     <Compile Include="Assets\SampleScenes\Scripts\CameraSwitch.cs" />
@@ -92,7 +93,7 @@
     <Compile Include="Assets\MY Scripts\CharController_Motor2.cs" />
     <Compile Include="Assets\Nokobot\Sci-Fi_Crossbow\Demo\Scripts\CrossbowShoot.cs" />
     <Compile Include="Assets\Flooded_Grounds\Scripts\FPSDisplay.cs" />
-    <Compile Include="Assets\MY Scripts\Spawner.cs" />
+    <Compile Include="Assets\MY Scripts\LoadGame.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Flooded_Grounds\Resources\TreeCreator\TreeCreatorBark.shader" />

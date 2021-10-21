@@ -99,6 +99,26 @@ public class OptionsMenu : MonoBehaviour
         }
         panels[buttonNumber - 1].SetActive(true);
     }
+    public void DifficultyGAme(int witchButton)
+    {
+        switch (witchButton)
+        {
+            case 1:
+                Changeenemy(6, 100);
+                break;
+            case 2:
+                Changeenemy(15, 300);
+                break;
+            case 3:
+                Changeenemy(30, 600);
+                break;
+        }
+    }
+    private void Changeenemy(int onScreen, int inGame)
+    {
+        SaveScript.enemiesOnScreen = onScreen;
+        SaveScript.currentEnemiesInGame = inGame;
+    }
     public void BackToMainMenu()
     {
         SceneManager.LoadScene(0);
@@ -137,4 +157,5 @@ public class OptionsMenu : MonoBehaviour
         }
     }
 }
+
 

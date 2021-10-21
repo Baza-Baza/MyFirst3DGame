@@ -75,6 +75,7 @@ public class EnemyDamage : MonoBehaviour
                 anim.SetBool("IsDied", true);
                 hasDied = true;
                 Destroy(this.transform.parent.gameObject, 25f);
+            SaveScript.enemiesOnScreen--;
             }
         }
     IEnumerator StartElements()

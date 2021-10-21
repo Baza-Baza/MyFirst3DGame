@@ -71,6 +71,7 @@ GameObject:
   - component: {fileID: 8046360115699270141}
   - component: {fileID: 7054630164499442953}
   - component: {fileID: 5541432722326917243}
+  - component: {fileID: 218988192365778774}
   m_Layer: 0
   m_Name: SpawnCube
   m_TagString: Untagged
@@ -116,6 +117,27 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &218988192365778774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4360132588789048601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b230bc405374004296d53f3c86c0484, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemySpawns:
+  - {fileID: 6035419972148695006, guid: 4326482eacab3b44c9df1fa6979e1568, type: 3}
+  - {fileID: 4870570998148775902, guid: 5d518562fbc481542af86455864a1398, type: 3}
+  - {fileID: 9112734564411019727, guid: af09896356b864046bcaecf60bc6632d, type: 3}
+  spawnPoints:
+  - {fileID: 2963495980114884851}
+  - {fileID: 3609236751358590754}
+  - {fileID: 4418538924504997722}
+  retriggerable: 1
 --- !u!1 &6385503415842039161
 GameObject:
   m_ObjectHideFlags: 0

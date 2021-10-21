@@ -34,6 +34,7 @@ public class SaveScript : MonoBehaviour
     public static int bullets = 12;
     public static int bow = 6;
     public static bool newGame = false;
+    public static bool savedGame = false;
     public static List<Transform> targets;
     public static Transform playerChar;
     public static GameObject chase;
@@ -44,6 +45,11 @@ public class SaveScript : MonoBehaviour
     public static GameObject batBloodSpray;
     public static GameObject axeBloodSpray;
     public static Animator bloodAnim;
+    public static int maxEnemiesOnScreen = 6;
+    public static int enemiesOnScreen = 0;
+    public static float attackStamina;
+    public static int maxEnemiesInGame = 100;
+    public static int currentEnemiesInGame = 0;
 
 
     [SerializeField] List<Transform> _targets;
@@ -69,7 +75,7 @@ public class SaveScript : MonoBehaviour
         if (newGame == true)
         {
                      playerHealth = 85;
-                 healthChanged = false;
+                 healthChanged = true;
                  enoughApple = false;
                  batteryPower = 1.0f;
                  batteryRefill = false;
@@ -98,7 +104,57 @@ public class SaveScript : MonoBehaviour
                  bullets = 12;
                  bow = 6;
                  newGame = false;
-}
+        }
+        if (savedGame == true)
+        {
+            playerHealth = PlayerPrefs.GetInt("PlayerHealth");
+            healthChanged = true;
+            batteryPower = PlayerPrefs.GetFloat("BattariesPower");
+            apples = PlayerPrefs.GetInt("ApplesAmt");
+            battaries = PlayerPrefs.GetInt("BattariesAmt");
+            bulletClips = PlayerPrefs.GetInt("BulletsClips");
+            bullets = PlayerPrefs.GetInt("BulletsAmt");
+            bow = PlayerPrefs.GetInt("ArrowsAmt");
+            maxEnemiesOnScreen = PlayerPrefs.GetInt("MaxEScreen");
+            maxEnemiesInGame = PlayerPrefs.GetInt("MaxEGame");
+
+            if (PlayerPrefs.GetInt("KnifeInv") == 1)
+            {
+                knife = true;
+            }
+            if (PlayerPrefs.GetInt("BatInv") == 1)
+            {
+                knife = true;
+            }
+            if (PlayerPrefs.GetInt("AxeInv") == 1)
+            {
+                knife = true;
+            }
+            if (PlayerPrefs.GetInt("GunInv") == 1)
+            {
+                knife = true;
+            }
+            if (PlayerPrefs.GetInt("CrossbowInv") == 1)
+            {
+                knife = true;
+            }
+            if (PlayerPrefs.GetInt("CabinKeyInv") == 1)
+            {
+                knife = true;
+            }
+            if (PlayerPrefs.GetInt("HouseKeyInv") == 1)
+            {
+                knife = true;
+            }
+            if (PlayerPrefs.GetInt("RoomKeyInv") == 1)
+            {
+                knife = true;
+            }
+            if (PlayerPrefs.GetInt("ArrowR") == 1)
+            {
+                knife = true;
+            }
+        }
     }
 
 }

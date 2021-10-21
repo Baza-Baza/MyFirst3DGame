@@ -181,6 +181,7 @@ public class EnemyAttack : MonoBehaviour
         chaseMusic = SaveScript.chase;
         chaseMusic.SetActive(false);
         canRun = true;
+        checkTime = Random.Range(3, 15);
 
     }
 }
