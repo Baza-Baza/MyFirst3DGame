@@ -7,8 +7,6 @@ using UnityEngine.Events;
 public class Inventory : MonoBehaviour
 {
     [SerializeField] GameObject inventoryPanel;
-    [SerializeField] List<GameObject> ApplesIcons;
-    [SerializeField] List<GameObject> ApplesButtons;
     [SerializeField] List<GameObject> BatteryIcons;
     [SerializeField] List<GameObject> BatteryButtons;
     [SerializeField] List<GameObject> Weapon_Icons;
@@ -41,10 +39,14 @@ public class Inventory : MonoBehaviour
     public UnityEvent bulletEvent;
     public UnityEvent bowEvent;
     private bool activeOptions =false;
+    [SerializeField] List<GameObject> applesIcons;
+    private List<GameObject> applesButtons;
 
     // Start is called before the first frame update
     private void Start()
     {
+        StartCoroutine(AddElements());
+        Debug.Log(SaveScript.apples);
         playerArms.SetActive(false);
         gunUI.SetActive(false);
         bulletAmt.SetActive(false);
@@ -53,14 +55,6 @@ public class Inventory : MonoBehaviour
         Cursor.visible = false;
         Time.timeScale = 1;
         optionsMenu.SetActive(false);
-        for (int i = 0; i < ApplesButtons.Count; i++)
-        {
-            ApplesButtons[i].SetActive(false);
-        }
-        for (int i = 0; i < ApplesIcons.Count; i++)
-        {
-            ApplesIcons[i].SetActive(false);
-        }
         for (int i = 0; i < BatteryIcons.Count; i++)
         {
             BatteryIcons[i].SetActive(false);
@@ -159,11 +153,11 @@ public class Inventory : MonoBehaviour
             SaveScript.enoughApple = false;
                 for (int i = 0; i < 6; i++)
                 {
-                    if (ApplesButtons[i].activeSelf == false)
+                    if (applesButtons[i].activeSelf == false)
                     {
-                        ApplesButtons[i].SetActive(true);
-                        ApplesIcons[i].SetActive(true);
-                        Debug.Log(ApplesIcons[i]);
+                        applesButtons[i].SetActive(true);
+                        applesIcons[i].SetActive(true);
+                        Debug.Log(applesIcons[i]);
                         break;
                     }
 
@@ -264,28 +258,28 @@ public class Inventory : MonoBehaviour
             switch (button.tag)
             {
                 case "1A":
-                    ApplesButtons[0].SetActive(false);
-                    ApplesIcons[0].SetActive(false);
+                    applesButtons[0].SetActive(false);
+                    applesIcons[0].SetActive(false);
                     break;
                 case "2A":
-                    ApplesButtons[1].SetActive(false);
-                    ApplesIcons[1].SetActive(false);
+                    applesButtons[1].SetActive(false);
+                    applesIcons[1].SetActive(false);
                     break;
                 case "3A":
-                    ApplesButtons[2].SetActive(false);
-                    ApplesIcons[2].SetActive(false);
+                    applesButtons[2].SetActive(false);
+                    applesIcons[2].SetActive(false);
                     break;
                 case "4A":
-                    ApplesButtons[3].SetActive(false);
-                    ApplesIcons[3].SetActive(false);
+                    applesButtons[3].SetActive(false);
+                    applesIcons[3].SetActive(false);
                     break;
                 case "5A":
-                    ApplesButtons[4].SetActive(false);
-                    ApplesIcons[4].SetActive(false);
+                    applesButtons[4].SetActive(false);
+                    applesIcons[4].SetActive(false);
                     break;
                 case "6A":
-                    ApplesButtons[5].SetActive(false);
-                    ApplesIcons[5].SetActive(false);
+                    applesButtons[5].SetActive(false);
+                    applesIcons[5].SetActive(false);
                     break;
             }
             Debug.Log(button.tag);
@@ -442,6 +436,18 @@ public class Inventory : MonoBehaviour
         for (int i = 0; i < ShootingWeapon.Count; i++)
         {
             ShootingWeapon[i].SetActive(false);
+        }
+
+    }
+    IEnumerator AddElements()
+    {
+        yield return new WaitForSeconds(0.1f);
+        applesIcons = new List<GameObject>(SaveScript.applesIcons);
+        applesButtons = new List<GameObject>(SaveScript.applesButtons);
+        for (int i = 0; i < applesIcons.Count; i++)
+        {
+            applesIcons[i].SetActive(false);
+            applesButtons[i].SetActive(false);
         }
 
     }

@@ -38,6 +38,7 @@ public class PickUPS : MonoBehaviour
                     if (SaveScript.apples < 6)
                     {
                         Destroy(hit.transform.gameObject);
+                        SaveScript.applesLeft--;
                         SaveScript.apples += 1;
                         player.Play();
                         SaveScript.enoughApple = true;

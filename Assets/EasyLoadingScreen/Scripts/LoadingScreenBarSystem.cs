@@ -14,21 +14,35 @@ public class LoadingScreenBarSystem : MonoBehaviour {
     AsyncOperation async;
     Image vignetteEfect;
     [SerializeField] GameObject menuScreen;
+    [SerializeField] GameObject LoadScreen;
 
-
+    private void Start()
+    {
+        Cursor.visible = true;
+        vignetteEfect = transform.Find("VignetteEfect").GetComponent<Image>();
+        vignetteEfect.color = new Color(vignetteEfect.color.r, vignetteEfect.color.g, vignetteEfect.color.b, vignetteEfectVolue);
+        menuScreen.SetActive(true);
+        //LoadScreen.SetActive(false);
+        if (backGroundImageAndLoop)
+            StartCoroutine(transitionImage());
+    }
 
     public void LoadingScreen (int sceneNo)
     {
-       
-        this.gameObject.SetActive(true);
+        LoadScreen.SetActive(true);
         menuScreen.SetActive(false);
+        this.gameObject.SetActive(true);
         StartCoroutine(Loading(sceneNo));
+    }
+    public void SwitchOFF()
+    {
+        LoadScreen.SetActive(true);
+        menuScreen.SetActive(false);
     }
 
     public void NEwGame()
     {
-        SaveScript.newGame = true;
-        
+        SaveScript.newGame = true;       
     }
 
     // Used to try. Delete the comment lines (25 and 36)
@@ -45,16 +59,7 @@ public class LoadingScreenBarSystem : MonoBehaviour {
     }
     */
 
-    private void Start()
-    {
-        Cursor.visible = true;
-        vignetteEfect = transform.Find("VignetteEfect").GetComponent<Image>();
-        vignetteEfect.color = new Color(vignetteEfect.color.r,vignetteEfect.color.g,vignetteEfect.color.b,vignetteEfectVolue);
-        menuScreen.SetActive(true);
-        this.gameObject.SetActive(false);
-        if (backGroundImageAndLoop)
-            StartCoroutine(transitionImage());
-    }
+
 
 
     // The pictures change according to the time of

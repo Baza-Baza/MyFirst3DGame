@@ -6,19 +6,25 @@ public class LoadGame : MonoBehaviour
 {
     public int dataExists = 10;
     [SerializeField] private GameObject loadButton;
+    private Inventory inventory;
 
     private void Start()
     {
-        dataExists = PlayerPrefs.GetInt("PlayerHealth", 0);
-        if (dataExists > 0)
+        if (loadButton != null)
         {
-            loadButton.SetActive(true);
+            dataExists = PlayerPrefs.GetInt("PlayerHealth", 0);
+            if (dataExists > 0)
+            {
+                loadButton.SetActive(true);
+            }
         }
+        
     }
     public void LoadGameData()
     {
         SaveScript.savedGame = true;
     }
+   
     public void SaveGame()
     {
         PlayerPrefs.SetInt("PlayerHealth", SaveScript.playerHealth);
@@ -30,6 +36,7 @@ public class LoadGame : MonoBehaviour
         PlayerPrefs.SetInt("ArrowsAmt", SaveScript.bow);
         PlayerPrefs.SetInt("MaxEScreen", SaveScript.maxEnemiesOnScreen);
         PlayerPrefs.SetInt("MaxEGame", SaveScript.maxEnemiesInGame);
+        PlayerPrefs.SetInt("ApplesL", SaveScript.applesLeft);
         if (SaveScript.knife == true)
         {
             PlayerPrefs.SetInt("KnifeInv", 1);
@@ -66,5 +73,9 @@ public class LoadGame : MonoBehaviour
         {
             PlayerPrefs.SetInt("ArrowR", 1);
         }
+
+        PlayerPrefs.Save();
+
     }
+    
 }

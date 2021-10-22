@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SaveScript : MonoBehaviour
 {
-    public static int playerHealth = 100;
+    public static int playerHealth = 85;
     public static bool healthChanged = false;
     public static bool enoughApple = false;
     public static float batteryPower = 1.0f;
@@ -50,6 +50,9 @@ public class SaveScript : MonoBehaviour
     public static float attackStamina;
     public static int maxEnemiesInGame = 100;
     public static int currentEnemiesInGame = 0;
+    public static int applesLeft =10 ;
+    public static List<GameObject> applesIcons;
+    public static List<GameObject> applesButtons;
 
 
     [SerializeField] List<Transform> _targets;
@@ -60,12 +63,16 @@ public class SaveScript : MonoBehaviour
     [SerializeField] GameObject _batBloodSpray;
     [SerializeField] GameObject _axeBloodSpray;
     [SerializeField] Animator _bloodAnim;
+    [SerializeField] List<GameObject> _applesIcons;
+    [SerializeField] List<GameObject> _applesButtons;
     private void Start()
     {
         player = gameObject.GetComponent<Transform>();
         bloodScreen = bloodUI;
         chase = chaseMusic;
         targets = new List<Transform>(_targets);
+        applesIcons = new List<GameObject>(_applesIcons);
+        applesButtons = new List<GameObject>(_applesButtons);
         stabPlayer = _stabPlayer;
         knifeBloodSpray = _knifeBloodSpray;
         batBloodSpray = _batBloodSpray;
@@ -74,7 +81,8 @@ public class SaveScript : MonoBehaviour
 
         if (newGame == true)
         {
-                     playerHealth = 85;
+           
+            playerHealth = 85;
                  healthChanged = true;
                  enoughApple = false;
                  batteryPower = 1.0f;
@@ -104,6 +112,7 @@ public class SaveScript : MonoBehaviour
                  bullets = 12;
                  bow = 6;
                  newGame = false;
+            applesLeft = 10;
         }
         if (savedGame == true)
         {
@@ -117,7 +126,7 @@ public class SaveScript : MonoBehaviour
             bow = PlayerPrefs.GetInt("ArrowsAmt");
             maxEnemiesOnScreen = PlayerPrefs.GetInt("MaxEScreen");
             maxEnemiesInGame = PlayerPrefs.GetInt("MaxEGame");
-
+            applesLeft = PlayerPrefs.GetInt("ApplesL");
             if (PlayerPrefs.GetInt("KnifeInv") == 1)
             {
                 knife = true;
@@ -154,7 +163,32 @@ public class SaveScript : MonoBehaviour
             {
                 knife = true;
             }
+            for (int i = 0; i < SaveScript.applesIcons.Count; i++)
+            {
+                if (PlayerPrefs.GetInt("ApplesM" + i) == 1)
+                {
+                    applesIcons[i].SetActive(true);
+                    applesButtons[i].SetActive(true);
+                }
+                
+            }
+            GameData data = SaveSystem.LoadData();
+
+            for (int i = 0; i < data.applesIcons.Length; i++)
+            {
+                if (data.applesIcons[i] == true)
+                {
+                    applesIcons[i].SetActive(true);
+                    applesButtons[i].SetActive(true);
+                }
+            }
+            savedGame = false;
         }
     }
+    public void NewSaveData()
+    {
+        SaveSystem.SaveDataGAme(this);
+    }
+
 
 }
