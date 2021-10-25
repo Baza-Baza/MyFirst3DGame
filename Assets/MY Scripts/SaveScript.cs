@@ -53,6 +53,16 @@ public class SaveScript : MonoBehaviour
     public static int applesLeft =10 ;
     public static List<GameObject> applesIcons;
     public static List<GameObject> applesButtons;
+    public static List<GameObject> batteriesIcons;
+    public static List<GameObject> batteriesButtons;
+    public static List<GameObject> weapon_Icons;
+    public static List<GameObject> weapon_Buttons;
+    public static List<GameObject> key_Buttons;
+    public static List<GameObject> key_Icons;
+    public static List<GameObject> bullet_Icons;
+    public static List<GameObject> bullet_Buttons;
+    public static List<GameObject> arrows;
+    public static List<GameObject> applesInStart;
 
 
     [SerializeField] List<Transform> _targets;
@@ -65,6 +75,16 @@ public class SaveScript : MonoBehaviour
     [SerializeField] Animator _bloodAnim;
     [SerializeField] List<GameObject> _applesIcons;
     [SerializeField] List<GameObject> _applesButtons;
+    [SerializeField] List<GameObject> _batteriesIcons;
+    [SerializeField] List<GameObject> _batteriesButtons;
+    [SerializeField] List<GameObject> _weapon_Icons;
+    [SerializeField] List<GameObject> _weapon_Buttons;
+    [SerializeField] List<GameObject> _key_Buttons;
+    [SerializeField] List<GameObject> _key_Icons;
+    [SerializeField] List<GameObject> _bullet_Icons;
+    [SerializeField] List<GameObject> _bullet_Buttons;
+    [SerializeField] List<GameObject> _arrows;
+
     private void Start()
     {
         player = gameObject.GetComponent<Transform>();
@@ -73,6 +93,18 @@ public class SaveScript : MonoBehaviour
         targets = new List<Transform>(_targets);
         applesIcons = new List<GameObject>(_applesIcons);
         applesButtons = new List<GameObject>(_applesButtons);
+        batteriesButtons = new List<GameObject>(_batteriesButtons);
+        batteriesIcons = new List<GameObject>(_batteriesIcons);
+        weapon_Icons = new List<GameObject>(_weapon_Icons);
+        weapon_Buttons = new List<GameObject>(_weapon_Buttons);
+        key_Icons = new List<GameObject>(_key_Icons);
+        key_Buttons = new List<GameObject>(_key_Buttons);
+        bullet_Icons = new List<GameObject>(_bullet_Icons);
+        bullet_Buttons = new List<GameObject>(_bullet_Buttons);
+        arrows = new List<GameObject>(_arrows);
+        applesInStart = new List<GameObject>(GameObject.FindGameObjectsWithTag("Apple"));
+
+
         stabPlayer = _stabPlayer;
         knifeBloodSpray = _knifeBloodSpray;
         batBloodSpray = _batBloodSpray;
@@ -112,82 +144,68 @@ public class SaveScript : MonoBehaviour
                  bullets = 12;
                  bow = 6;
                  newGame = false;
-            applesLeft = 10;
+                applesLeft = 10;
         }
         if (savedGame == true)
         {
-            playerHealth = PlayerPrefs.GetInt("PlayerHealth");
-            healthChanged = true;
-            batteryPower = PlayerPrefs.GetFloat("BattariesPower");
-            apples = PlayerPrefs.GetInt("ApplesAmt");
-            battaries = PlayerPrefs.GetInt("BattariesAmt");
-            bulletClips = PlayerPrefs.GetInt("BulletsClips");
-            bullets = PlayerPrefs.GetInt("BulletsAmt");
-            bow = PlayerPrefs.GetInt("ArrowsAmt");
-            maxEnemiesOnScreen = PlayerPrefs.GetInt("MaxEScreen");
-            maxEnemiesInGame = PlayerPrefs.GetInt("MaxEGame");
-            applesLeft = PlayerPrefs.GetInt("ApplesL");
-            if (PlayerPrefs.GetInt("KnifeInv") == 1)
-            {
-                knife = true;
-            }
-            if (PlayerPrefs.GetInt("BatInv") == 1)
-            {
-                knife = true;
-            }
-            if (PlayerPrefs.GetInt("AxeInv") == 1)
-            {
-                knife = true;
-            }
-            if (PlayerPrefs.GetInt("GunInv") == 1)
-            {
-                knife = true;
-            }
-            if (PlayerPrefs.GetInt("CrossbowInv") == 1)
-            {
-                knife = true;
-            }
-            if (PlayerPrefs.GetInt("CabinKeyInv") == 1)
-            {
-                knife = true;
-            }
-            if (PlayerPrefs.GetInt("HouseKeyInv") == 1)
-            {
-                knife = true;
-            }
-            if (PlayerPrefs.GetInt("RoomKeyInv") == 1)
-            {
-                knife = true;
-            }
-            if (PlayerPrefs.GetInt("ArrowR") == 1)
-            {
-                knife = true;
-            }
-            for (int i = 0; i < SaveScript.applesIcons.Count; i++)
-            {
-                if (PlayerPrefs.GetInt("ApplesM" + i) == 1)
-                {
-                    applesIcons[i].SetActive(true);
-                    applesButtons[i].SetActive(true);
-                }
-                
-            }
             GameData data = SaveSystem.LoadData();
+            playerHealth = data.playerHealth;
+            healthChanged = data.healthChanged;
+            batteryPower = data.batteryPower;
+            batteryRefill = data.batteryRefill;
+            flashLightOn = data.flashLightOn;
+            nvLightOn = data.nvLightOn;
+            apples = data.apples;
+            battaries = data.battaries;
+            axe = data.axe;
+            bat = data.bat;
+            crossbow = data.crossbow;
+            gun = data.gun;
+            knife = data.knife;
+            cabinKey = data.knife;
+            roomKey = data.roomKey;
+            houseKey = data.houseKey;
+            bulletsRefill = data.bulletsRefill;
+            enoughBullet = data.enoughBullet;
+            bulletClips = data.bulletClips;
+            arrowRefill = data.arrowRefill;
+            haveAxe = data.haveAxe;
+            haveKnife = data.haveKnife;
+            haveBat = data.haveBat;
+            haveGun = data.haveGun;
+            haveCrossBow = data.haveCrossBow;
+            bullets = data.bullets;
+            bow = data.bow;
+            applesLeft = data.applesLeft;
+            StartCoroutine(StartElements());
 
-            for (int i = 0; i < data.applesIcons.Length; i++)
-            {
-                if (data.applesIcons[i] == true)
-                {
-                    applesIcons[i].SetActive(true);
-                    applesButtons[i].SetActive(true);
-                }
-            }
             savedGame = false;
         }
     }
     public void NewSaveData()
     {
         SaveSystem.SaveDataGAme(this);
+    }
+    IEnumerator StartElements()
+    {
+        yield return new WaitForSeconds(0.2f);
+        GameData data = SaveSystem.LoadData();
+        
+        for (int i = 0; i < applesIcons.Count; i++)
+        {
+            applesIcons[i].SetActive(data.applesIcons[i]);
+            applesButtons[i].SetActive(data.applesIcons[i]);
+        }
+        for (int i = 0; i < batteriesIcons.Count; i++)
+        {
+            batteriesIcons[i].SetActive(data.batteriesIcons[i]);
+            batteriesButtons[i].SetActive(data.batteriesIcons[i]);
+        }
+        for (int i = 0; i < bullet_Icons.Count; i++)
+        {
+            bullet_Icons[i].SetActive(data.bullet_Icons[i]);
+            bullet_Buttons[i].SetActive(data.bullet_Icons[i]);
+        }
     }
 
 

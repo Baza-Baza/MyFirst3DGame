@@ -7,15 +7,6 @@ using UnityEngine.Events;
 public class Inventory : MonoBehaviour
 {
     [SerializeField] GameObject inventoryPanel;
-    [SerializeField] List<GameObject> BatteryIcons;
-    [SerializeField] List<GameObject> BatteryButtons;
-    [SerializeField] List<GameObject> Weapon_Icons;
-    [SerializeField] List<GameObject> Weapon_Buttons;
-    [SerializeField] List<GameObject> Key_Buttons;
-    [SerializeField] List<GameObject> Key_Icons;
-    [SerializeField] List<GameObject> Bullet_Icons;
-    [SerializeField] List<GameObject> Bullet_Buttons;
-    [SerializeField] List<GameObject> Arrows;
     [SerializeField] AudioClip appleBite;
     [SerializeField] AudioClip batteryChange;
     [SerializeField] AudioClip weaponChange;
@@ -35,12 +26,22 @@ public class Inventory : MonoBehaviour
 
 
     private bool isInventory = false;
+    private bool startUpdateInv = false;
     private AudioSource player;
     public UnityEvent bulletEvent;
     public UnityEvent bowEvent;
     private bool activeOptions =false;
-    [SerializeField] List<GameObject> applesIcons;
+    private List<GameObject> applesIcons;
     private List<GameObject> applesButtons;
+    private List<GameObject> BatteryIcons;
+    private List<GameObject> BatteryButtons;
+    private List<GameObject> Weapon_Icons;
+    private List<GameObject> Weapon_Buttons;
+    private List<GameObject> Key_Buttons;
+    private List<GameObject> Key_Icons;
+    private List<GameObject> Bullet_Icons;
+    private List<GameObject> Bullet_Buttons;
+    private List<GameObject> Arrows;
 
     // Start is called before the first frame update
     private void Start()
@@ -55,42 +56,6 @@ public class Inventory : MonoBehaviour
         Cursor.visible = false;
         Time.timeScale = 1;
         optionsMenu.SetActive(false);
-        for (int i = 0; i < BatteryIcons.Count; i++)
-        {
-            BatteryIcons[i].SetActive(false);
-        }
-        for (int i = 0; i < BatteryButtons.Count; i++)
-        {
-            BatteryButtons[i].SetActive(false);
-        }
-        for (int i = 0; i < Weapon_Buttons.Count; i++)
-        {
-            Weapon_Buttons[i].SetActive(false);
-        }
-        for (int i = 0; i < Weapon_Icons.Count; i++)
-        {
-            Weapon_Icons[i].SetActive(false);
-        }
-        for (int i = 0; i < Key_Buttons.Count; i++)
-        {
-            Key_Buttons[i].SetActive(false);
-        }
-        for (int i = 0; i < Key_Icons.Count; i++)
-        {
-            Key_Icons[i].SetActive(false);
-        }
-        for (int i = 0; i < Bullet_Icons.Count; i++)
-        {
-            Bullet_Icons[i].SetActive(false);
-        }
-        for (int i = 0; i < Bullet_Buttons.Count; i++)
-        {
-            Bullet_Buttons[i].SetActive(false);
-        }
-        for (int i = 0; i < Arrows.Count; i++)
-        {
-            Arrows[i].SetActive(false);
-        }
         for (int i = 0; i < MeleeWeapon.Count; i++)
         {
             MeleeWeapon[i].SetActive(false);
@@ -181,40 +146,46 @@ public class Inventory : MonoBehaviour
     }
     void CheckWeapons()
     {
-        if (SaveScript.axe == true)
+        if (startUpdateInv == true)
         {
-            Weapon_Buttons[0].SetActive(true);
-            Weapon_Icons[0].SetActive(true);
-        }
-        if (SaveScript.bat == true)
-        {
-            Weapon_Buttons[1].SetActive(true);
-            Weapon_Icons[1].SetActive(true);
-        }
-        if (SaveScript.crossbow == true)
-        {
-            Weapon_Buttons[2].SetActive(true);
-            Weapon_Icons[2].SetActive(true);
-        }
-        if (SaveScript.gun == true)
-        {
-            Weapon_Buttons[3].SetActive(true);
-            Weapon_Icons[3].SetActive(true);
-        }
-        if (SaveScript.knife == true)
-        {
-            Weapon_Buttons[4].SetActive(true);
-            Weapon_Icons[4].SetActive(true);
+            if (SaveScript.axe == true)
+            {
+                Weapon_Icons[0].SetActive(true);
+                Weapon_Buttons[0].SetActive(true);
+
+            }
+            if (SaveScript.bat == true)
+            {
+                Weapon_Buttons[1].SetActive(true);
+                Weapon_Icons[1].SetActive(true);
+            }
+            if (SaveScript.crossbow == true)
+            {
+                Weapon_Buttons[2].SetActive(true);
+                Weapon_Icons[2].SetActive(true);
+            }
+            if (SaveScript.gun == true)
+            {
+                Weapon_Buttons[3].SetActive(true);
+                Weapon_Icons[3].SetActive(true);
+            }
+            if (SaveScript.knife == true)
+            {
+                Weapon_Buttons[4].SetActive(true);
+                Weapon_Icons[4].SetActive(true);
+            }
         }
     }
    void CheckBulletANDAroows()
     {
-        if (SaveScript.arrowRefill == true)
-        {   
+        if (startUpdateInv == true)
+        {
+            if (SaveScript.arrowRefill == true)
+            {
                 Arrows[0].SetActive(true);
                 Arrows[1].SetActive(true);
-        }
-        if (SaveScript.enoughBullet == true)
+            }
+            if (SaveScript.enoughBullet == true)
             {
                 SaveScript.enoughBullet = false;
                 for (int i = 0; i < 4; i++)
@@ -229,23 +200,27 @@ public class Inventory : MonoBehaviour
 
                 }
             }
+        }
     }
     void CheckKeys()
     {
-        if (SaveScript.cabinKey == true)
+        if (startUpdateInv == true)
         {
-            Key_Buttons[0].SetActive(true);
-            Key_Icons[0].SetActive(true);
-        }
-        if (SaveScript.houseKey == true)
-        {
-            Key_Buttons[1].SetActive(true);
-            Key_Icons[1].SetActive(true);
-        }
-        if (SaveScript.roomKey == true)
-        {
-            Key_Buttons[2].SetActive(true);
-            Key_Icons[2].SetActive(true);
+            if (SaveScript.cabinKey == true)
+            {
+                Key_Buttons[0].SetActive(true);
+                Key_Icons[0].SetActive(true);
+            }
+            if (SaveScript.houseKey == true)
+            {
+                Key_Buttons[1].SetActive(true);
+                Key_Icons[1].SetActive(true);
+            }
+            if (SaveScript.roomKey == true)
+            {
+                Key_Buttons[2].SetActive(true);
+                Key_Icons[2].SetActive(true);
+            }
         }
 
     }
@@ -444,11 +419,45 @@ public class Inventory : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         applesIcons = new List<GameObject>(SaveScript.applesIcons);
         applesButtons = new List<GameObject>(SaveScript.applesButtons);
+        BatteryButtons = new List<GameObject>(SaveScript.batteriesButtons);
+        BatteryIcons = new List<GameObject>(SaveScript.batteriesIcons);
+        Weapon_Icons = new List<GameObject>(SaveScript.weapon_Icons);
+        Weapon_Buttons = new List<GameObject>(SaveScript.weapon_Buttons);
+        Key_Icons = new List<GameObject>(SaveScript.key_Icons);
+        Key_Buttons = new List<GameObject>(SaveScript.key_Buttons);
+        Bullet_Icons = new List<GameObject>(SaveScript.bullet_Icons);
+        Bullet_Buttons = new List<GameObject>(SaveScript.bullet_Buttons);
+        Arrows = new List<GameObject>(SaveScript.arrows);
         for (int i = 0; i < applesIcons.Count; i++)
         {
             applesIcons[i].SetActive(false);
             applesButtons[i].SetActive(false);
         }
+        for (int i = 0; i < BatteryIcons.Count; i++)
+        {
+            BatteryIcons[i].SetActive(false);
+            BatteryButtons[i].SetActive(false);
+        }
+        for (int i = 0; i < Weapon_Icons.Count; i++)
+        {
+            Weapon_Icons[i].SetActive(false);
+            Weapon_Buttons[i].SetActive(false);
+        }
+        for (int i = 0; i < Key_Icons.Count; i++)
+        {
+            Key_Icons[i].SetActive(false);
+            Key_Buttons[i].SetActive(false);
+        }
+        for (int i = 0; i < Bullet_Icons.Count; i++)
+        {
+            Bullet_Icons[i].SetActive(false);
+            Bullet_Buttons[i].SetActive(false);
+        }
+        for (int i = 0; i < Arrows.Count; i++)
+        {
+            Arrows[i].SetActive(false);
+        }
+        startUpdateInv = true;
 
     }
     

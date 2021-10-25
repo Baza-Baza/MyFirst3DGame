@@ -68,8 +68,10 @@
     <Compile Include="Assets\MY Scripts\SaveScript.cs" />
     <Compile Include="Assets\MY Scripts\PLayerAttack.cs" />
     <Compile Include="Assets\EasyLoadingScreen\Scripts\LoadingScreenBarSystem.cs" />
+    <Compile Include="Assets\MY Scripts\ApplesPickups.cs" />
     <Compile Include="Assets\MY Scripts\GunShot.cs" />
     <Compile Include="Assets\MY Scripts\LHRotate.cs" />
+    <Compile Include="Assets\MY Scripts\SaveSystem.cs" />
     <Compile Include="Assets\EasyLoadingScreen\Scripts\RotateBar.cs" />
     <Compile Include="Assets\Flooded_Grounds\Scripts\WaterFloat.cs" />
     <Compile Include="Assets\SampleScenes\Menu\Scripts\PauseMenu.cs" />
@@ -94,9 +96,8 @@
     <Compile Include="Assets\MY Scripts\CharController_Motor2.cs" />
     <Compile Include="Assets\Nokobot\Sci-Fi_Crossbow\Demo\Scripts\CrossbowShoot.cs" />
     <Compile Include="Assets\Flooded_Grounds\Scripts\FPSDisplay.cs" />
-    <Compile Include="Assets\MY Scripts\ApplesPickups.cs" />
     <Compile Include="Assets\MY Scripts\GameData.cs" />
-    <Compile Include="Assets\MY Scripts\SaveSystem.cs" />
+    <Compile Include="Assets\MY Scripts\AmmoPickups.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Flooded_Grounds\Resources\TreeCreator\TreeCreatorBark.shader" />
