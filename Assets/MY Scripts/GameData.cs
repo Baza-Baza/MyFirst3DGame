@@ -44,7 +44,7 @@ public class GameData
     public List<int> applesInScene;
     public  bool applesButton;
     public int applesLeft;
-
+    public List<GameObject> destroyGameObjects = new List<GameObject>();
     public GameData(SaveScript saveScript)
     {
         playerHealth = SaveScript.playerHealth;
@@ -88,6 +88,10 @@ public class GameData
         for (int i = 0; i < SaveScript.bullet_Icons.Count; i++)
         {
             bullet_Icons[i] = SaveScript.bullet_Icons[i].activeSelf;
+        }
+        for (int i = 0; i < SaveScript.applesInStart.Count; i++)
+        {
+            destroyGameObjects[i] = SaveScript.applesInStart[i];
         }
     }
 }

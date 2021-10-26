@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SaveScript : MonoBehaviour
 {
@@ -62,7 +63,7 @@ public class SaveScript : MonoBehaviour
     public static List<GameObject> bullet_Icons;
     public static List<GameObject> bullet_Buttons;
     public static List<GameObject> arrows;
-    public static List<GameObject> applesInStart;
+    public static List<GameObject> applesInStart = new List<GameObject>()  ;
 
 
     [SerializeField] List<Transform> _targets;
@@ -102,7 +103,6 @@ public class SaveScript : MonoBehaviour
         bullet_Icons = new List<GameObject>(_bullet_Icons);
         bullet_Buttons = new List<GameObject>(_bullet_Buttons);
         arrows = new List<GameObject>(_arrows);
-        applesInStart = new List<GameObject>(GameObject.FindGameObjectsWithTag("Apple"));
 
 
         stabPlayer = _stabPlayer;
@@ -177,6 +177,14 @@ public class SaveScript : MonoBehaviour
             bullets = data.bullets;
             bow = data.bow;
             applesLeft = data.applesLeft;
+            for (int i = 0; i < data.destroyGameObjects.Count; i++)
+            {
+                applesInStart[i] = data.destroyGameObjects[i];
+            }
+            for (int i = 0; i < applesInStart.Count; i++)
+            {
+                Destroy(applesInStart[i]);
+            }
             StartCoroutine(StartElements());
 
             savedGame = false;

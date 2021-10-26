@@ -10,15 +10,15 @@ public class LoadGame : MonoBehaviour
 
     private void Start()
     {
-       //* GameData data = SaveSystem.LoadData();
-       /* if (loadButton != null)
+        GameData data = SaveSystem.LoadData();
+        if (loadButton != null)
         {
             dataExists = data.playerHealth;
             if (dataExists > 0)
             {
                 loadButton.SetActive(true);
             }
-        }*/
+        }
         
     }
     public void LoadGameData()

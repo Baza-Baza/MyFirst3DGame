@@ -19,10 +19,10 @@ public static  class SaveSystem
     public static GameData LoadData()
     {
         string path = Application.persistentDataPath + "/data.fun";
-        if (File.Exists(path))
+        FileStream stream = new FileStream(path, FileMode.Open);
+        if (File.Exists(path) && stream.Length > 0)
         {
             BinaryFormatter binaryFormatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.Open);
 
             GameData gameData = binaryFormatter.Deserialize(stream) as GameData;
             stream.Close();
@@ -33,6 +33,10 @@ public static  class SaveSystem
         else
         {
             Debug.LogError("Save file not found in" + path);
+            BinaryFormatter formatter = new BinaryFormatter();
+            GameData data = new GameData(saveScript);
+            formatter.Serialize(stream, data);
+            stream.Close();
             return null;
         }
     }

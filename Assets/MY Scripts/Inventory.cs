@@ -65,7 +65,6 @@ public class Inventory : MonoBehaviour
             ShootingWeapon[i].SetActive(false);
         }
 
-
     }
 
     // Update is called once per frame
@@ -105,7 +104,7 @@ public class Inventory : MonoBehaviour
             }
             
         }
-            CheckInventory();
+           CheckInventory();
             CheckWeapons();
         CheckBulletANDAroows();
         CheckKeys();
@@ -122,7 +121,6 @@ public class Inventory : MonoBehaviour
                     {
                         applesButtons[i].SetActive(true);
                         applesIcons[i].SetActive(true);
-                        Debug.Log(applesIcons[i]);
                         break;
                     }
 
@@ -137,7 +135,6 @@ public class Inventory : MonoBehaviour
                     {
                         BatteryButtons[i].SetActive(true);
                         BatteryIcons[i].SetActive(true);
-                        Debug.Log(BatteryButtons[i]);
                         break;
                     }
 

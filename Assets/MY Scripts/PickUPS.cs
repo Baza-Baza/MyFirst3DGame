@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class PickUPS : MonoBehaviour
 {
@@ -38,9 +39,10 @@ public class PickUPS : MonoBehaviour
                     if (SaveScript.apples < 6)
                     {
                         Destroy(hit.transform.gameObject);
+                        SaveScript.applesInStart.Add(hit.transform.gameObject);
                         SaveScript.applesLeft--;
                         SaveScript.apples += 1;
-                        player.Play();
+                        player.Play();                      
                         SaveScript.enoughApple = true;
                     }
                 }
@@ -53,6 +55,7 @@ public class PickUPS : MonoBehaviour
                     if (SaveScript.battaries < 4)
                     {
                         Destroy(hit.transform.gameObject);
+                        SaveScript.applesInStart.Add(hit.transform.gameObject);
                         SaveScript.battaries += 1;
                         player.Play();
                         SaveScript.enoughBattery = true;
@@ -67,6 +70,7 @@ public class PickUPS : MonoBehaviour
                     if (SaveScript.knife == false)
                     {
                         Destroy(hit.transform.gameObject);
+                        SaveScript.applesInStart.Add(hit.transform.gameObject);
                         SaveScript.knife = true;
                         player.Play();
                     }
@@ -80,6 +84,7 @@ public class PickUPS : MonoBehaviour
                     if (SaveScript.bat == false)
                     {
                         Destroy(hit.transform.gameObject);
+                        SaveScript.applesInStart.Add(hit.transform.gameObject);
                         SaveScript.bat = true;
                         player.Play();
                     }
@@ -93,6 +98,7 @@ public class PickUPS : MonoBehaviour
                     if (SaveScript.axe == false)
                     {
                         Destroy(hit.transform.gameObject);
+                        SaveScript.applesInStart.Add(hit.transform.gameObject);
                         SaveScript.axe = true;
                         player.Play();
                     }
@@ -106,6 +112,7 @@ public class PickUPS : MonoBehaviour
                     if (SaveScript.crossbow == false)
                     {
                         Destroy(hit.transform.gameObject);
+                        SaveScript.applesInStart.Add(hit.transform.gameObject);
                         SaveScript.crossbow = true;
                         player.Play();
                     }
@@ -119,6 +126,7 @@ public class PickUPS : MonoBehaviour
                     if (SaveScript.gun == false)
                     {
                         Destroy(hit.transform.gameObject);
+                        SaveScript.applesInStart.Add(hit.transform.gameObject);
                         SaveScript.gun = true;
                         player.Play();
                     }
@@ -133,7 +141,8 @@ public class PickUPS : MonoBehaviour
                     if (SaveScript.bulletClips < 4)   
                      {
                             Destroy(hit.transform.gameObject);
-                            SaveScript.bulletClips += 1;
+                        SaveScript.applesInStart.Add(hit.transform.gameObject);
+                        SaveScript.bulletClips += 1;
                             player.Play();
                             SaveScript.enoughBullet = true;
                     }
@@ -148,6 +157,7 @@ public class PickUPS : MonoBehaviour
                     if (SaveScript.arrowRefill == false)
                     {
                         Destroy(hit.transform.gameObject);
+                        SaveScript.applesInStart.Add(hit.transform.gameObject);
                         SaveScript.arrowRefill = true;
                         player.Play();
                     }
@@ -161,6 +171,7 @@ public class PickUPS : MonoBehaviour
                     if (SaveScript.cabinKey == false)
                     {
                         Destroy(hit.transform.gameObject);
+                        SaveScript.applesInStart.Add(hit.transform.gameObject);
                         SaveScript.cabinKey = true;
                         player.Play();
                     }
@@ -174,6 +185,7 @@ public class PickUPS : MonoBehaviour
                     if (SaveScript.roomKey == false)
                     {
                         Destroy(hit.transform.gameObject);
+                        SaveScript.applesInStart.Add(hit.transform.gameObject);
                         SaveScript.roomKey = true;
                         player.Play();
                     }
@@ -187,6 +199,7 @@ public class PickUPS : MonoBehaviour
                     if (SaveScript.houseKey == false)
                     {
                         Destroy(hit.transform.gameObject);
+                        SaveScript.applesInStart.Add(hit.transform.gameObject);
                         SaveScript.houseKey = true;
                         player.Play();
                     }
